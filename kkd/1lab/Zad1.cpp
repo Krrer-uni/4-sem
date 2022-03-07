@@ -27,21 +27,18 @@ int main (int argc, char* argv[]){
         return 0;
     }
 
-    double result = 0;
-    // cout << result << endl;
+    double result = -0;
     double log_count = log2((double)char_count);
     for(int i =0 ; i < 256; i++){
-        // cout << (double)symbols[i] <<  " ";
         if(symbols[i] > 0){
             result += (double)symbols[i] * (log2((double)symbols[i]) - log_count);
-            // cout << result << endl;
         }
     }
     result = -result;
     result /= (double)char_count;
     cout << result << endl;
 
-    result = 0;
+    result = -0;
     for(int i =0; i < 256; i++){
         if(symbols[i] > 0){
             log_count = log2((double)symbols[i]);
@@ -55,7 +52,4 @@ int main (int argc, char* argv[]){
     result = -result;
     result /= (double)char_count;
     cout << result << endl;
-
-    result = 0;
-
 }
