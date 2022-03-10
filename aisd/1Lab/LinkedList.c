@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
 
 struct Node{
     int value;
@@ -33,11 +33,39 @@ int get_value_at(struct Node** List, int position){
 }
 
 int main(int argc, char* argv[]){
+    int size = 1000;
+    srand(time(NULL));   
+    int r = rand()%size;
+    clock_t start,end;
+    long double cpu_time_used;
+    start = clock();
+    long double sum = 0;
+
     struct Node* LinkedList = NULL;
-    for(int i = 0 ; i < 1000; i ++){
+    for(int i = 0 ; i < size; i ++){
         add_element(&LinkedList, i);
     }
-    for(int i = 0; i < 1000; i++){
-        printf("%d\n",get_value_at(&LinkedList, i));
+    for(int i = 0; i < size; i++){
+        sum = 0;
+        for(int j = 0; j < 50; j++){
+          start = clock();
+        int tmp = get_value_at(&LinkedList, i);
+        end = clock();  
+        sum += ((long double) (end - start)) / CLOCKS_PER_SEC;
+        }
+        
+        printf("Acces to %d element took: %.8Lf seconds on avarage\n",i,(long double)sum/50);
     }
+    sum = 0;
+    long double check = 0;
+    for(int i = 0; i < size; i++){
+        start = clock();
+        r = rand()%size;
+        check +=r;
+        int tmp = get_value_at(&LinkedList,r);
+        end = clock();
+        sum += ((long double) ( end - start)) / CLOCKS_PER_SEC;
+    }
+    sum /= size;
+    printf("Acces to random element took: %.10Lf seconds on avarage\n",sum);
 }
