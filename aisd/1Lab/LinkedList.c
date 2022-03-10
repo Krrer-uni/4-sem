@@ -32,6 +32,14 @@ int get_value_at(struct Node** List, int position){
     return tmp->value;
 }
 
+struct Node* merge(struct Node ** List1, struct Node ** List2){
+    
+    struct Node* tmp = *List1;
+    while(tmp->next != NULL) tmp = tmp->next;
+    tmp->next = *List2;
+    return *List1;
+}
+
 int main(int argc, char* argv[]){
     int size = 1000;
     srand(time(NULL));   
@@ -68,4 +76,15 @@ int main(int argc, char* argv[]){
     }
     sum /= size;
     printf("Acces to random element took: %.10Lf seconds on avarage\n",sum);
+
+    struct Node* MergeList1 = NULL;
+    struct Node* MergeList2 = NULL;
+    for(int i = 0; i< 3; i++){
+        add_element(&MergeList1,i);
+        add_element(&MergeList2,i);
+    }
+    merge(&MergeList1, &MergeList2);
+    for(int i = 0; i< 6; i++){
+        printf("element of merged list at %d is %d\n",i,get_value_at(&MergeList1, i));
+    }
 }
