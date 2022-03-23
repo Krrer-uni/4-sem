@@ -17,13 +17,13 @@ int main(int argc, char** argv){
     cin >> n;
     int arr[n];
     
-    if(n < 50){
-        for(int i = 0; i < n; i++){
-            cin >> arr[i];
-            cout << arr[i] << " ";
-        }
-        cout << "\n";
+    
+    for(int i = 0; i < n; i++){
+        cin >> arr[i];
+       if(n < 50) cout << arr[i] << " ";
     }
+    if(n < 50) cout << "\n";
+    
     
     for(int j = 1; j < n; j++){
         int key = arr[j];
@@ -35,6 +35,7 @@ int main(int argc, char** argv){
         }
         arr[i+1] = key;
     }
+    
     for(int i = 0; i < n-1; i++){
         if(arr[i]> arr[i+1]){
             cout << "SORTING ERROR\n";
@@ -45,7 +46,6 @@ int main(int argc, char** argv){
 
     if(n < 50){
         for(int i = 0; i < n; i++){
-            cin >> arr[i];
             cout << arr[i] << " ";
         }
         cout << "\n";
