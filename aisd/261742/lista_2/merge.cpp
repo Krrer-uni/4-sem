@@ -41,7 +41,6 @@ void merge(int* arr, int  b, int m, int e){
     }
     for(int p = 0; p <= e-b; p++ ){
         arr[p+b] = arr_out[p];
-        SWAP++;
     }
 }
 
