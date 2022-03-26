@@ -19,9 +19,16 @@ int ls(int a, int b){
 
 void partition (int arr[],int low,int high, int* lp, int* rp)
 {
+    // cout << "in:" << endl;
+    // for(int i = 0; i < 10; i++){
+    //     cout << arr[i] << " ";
+    //     }
+    // cout << "\n";
     if(ls(arr[high],arr[low])) swap(arr,high,low);
     int p = arr[high];  
     int q = arr[low];
+
+    // cout << "p = " << p << " q = " << q << " low = " << low << " high = " << high << endl;
  
     int l = (low);
     int h = (high);
@@ -30,11 +37,22 @@ void partition (int arr[],int low,int high, int* lp, int* rp)
     {
         if (l - low < high - h)
         {
-            if(arr[j] < q){
+            if(ls(arr[j], q)){
                 l++;
-            } else if(arr[j]>p){
+                swap(arr,j,l);
+            } else if(ls( p , arr[j])){
                 h--;
-                swap(arr[j],arr[h]);
+                swap(arr,j,h);
+                j--;
+            } 
+        } else {
+            if(ls( p , arr[j])){
+                h--;
+                swap(arr,j,h);
+                j--;
+            } else if(ls(arr[j], q)){
+                l++;
+                swap(arr,j,l);
             } 
         }
     }
@@ -42,12 +60,19 @@ void partition (int arr[],int low,int high, int* lp, int* rp)
     swap(arr, l ,low);
     *lp = l;
     *rp = h;
+
+    // cout << "out:" << endl;
+    // for(int i = 0; i < 10; i++){
+    //     cout << arr[i] << " ";
+    //     }
+    // cout << "\n";
 }
 
 void quick(int arr[], int b, int e){
     if (b < e){
         int p,l;
         partition(arr,b,e, &l, &p);
+        // cout << l << " " << p << endl;
         quick(arr,b,l-1);
         quick(arr,l+1,p-1);
         quick(arr,p+1,e);
@@ -69,12 +94,12 @@ int main(int argc, char** argv){
     
     quick(arr,0,n-1);
 
-    // for(int i = 0; i < n-1; i++){
-    //     if(arr[i]> arr[i+1]){
-    //         cout << "SORTING ERROR\n";
-    //         return -1; 
-    //     }
-    // }
+    for(int i = 0; i < n-1; i++){
+        if(arr[i]> arr[i+1]){
+            cout << "SORTING ERROR\n";
+            return -1; 
+        }
+    }
 
 
     if(n < 50){
