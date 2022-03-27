@@ -4,6 +4,7 @@ using namespace std;
 
 int SWAP = 0;
 int COMP = 0;
+int n;
 
 void swap(int* arr, int a, int b){
     int tmp  = arr[a];
@@ -27,6 +28,7 @@ void partition (int arr[],int low,int high, int* lp, int* rp)
     if(ls(arr[high],arr[low])) swap(arr,high,low);
     int p = arr[high];  
     int q = arr[low];
+    SWAP+=2;
 
     // cout << "p = " << p << " q = " << q << " low = " << low << " high = " << high << endl;
  
@@ -80,7 +82,7 @@ void quick(int arr[], int b, int e){
 }
 
 int main(int argc, char** argv){
-    int n;
+
     cin >> n;
     int arr[n];
     
@@ -108,5 +110,5 @@ int main(int argc, char** argv){
         }
         cout << "\n";
     }
-    cout  << COMP << " " << SWAP << "\n";
+    cout  << COMP << ";" << SWAP << "\n";
 }

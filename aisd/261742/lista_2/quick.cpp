@@ -4,6 +4,7 @@ using namespace std;
 
 int SWAP = 0;
 int COMP = 0;
+int n;
 
 void swap(int* arr, int a, int b){
     int tmp  = arr[a];
@@ -19,23 +20,28 @@ int ls(int a, int b){
 
 int partition (int arr[],int low,int high)
 {
-    // pivot (Element to be placed at right position)
-    int pivot = arr[high];  
+    int pivot = arr[low];  
+    SWAP++;
  
-    int i = (low - 1);  // Index of smaller element and indicates the 
-                   // right position of pivot found so far
+    int p = low;
 
-    for (int j = low; j <= high- 1; j++)
+    for (int j = p+1; j <= high; j++)
     {
-        // If current element is smaller than the pivot
         if (ls(arr[j] , pivot))
         {
-            i++;    // increment index of smaller element
-            swap(arr, i ,j);
+            p++;
+            swap(arr, p ,j);
         }
     }
-    swap(arr, i + 1 ,high);
-    return (i + 1);
+    swap(arr, p  ,low);
+
+    if(n < 50){
+        for(int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+    }
+    return p;
 }
 
 void quick(int arr[], int b, int e){
@@ -47,7 +53,6 @@ void quick(int arr[], int b, int e){
 }
 
 int main(int argc, char** argv){
-    int n;
     cin >> n;
     int arr[n];
     
@@ -75,5 +80,5 @@ int main(int argc, char** argv){
         }
         cout << "\n";
     }
-    cout  << COMP << " " << SWAP << "\n";
+    cout  << COMP << ";" << SWAP << "\n";
 }

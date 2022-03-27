@@ -56,9 +56,31 @@ void merge(int* arr, int  b, int m, int e){
     }
 }
 
+void insert(int * arr, int low, int high){
+    for(int j = low; j < high+1; j++){
+        int key = arr[j];
+        int i = j -1;
+        while(i >= low && arr[i] > key){
+            COMP++;
+            swap(arr,i,i+1);
+            i--;
+        }
+        arr[i+1] = key;
+        SWAP++;
+    }
+}
+
 void merge_sort(int arr[], int b, int e){
     if(b==e) return;
-    else{
+    else if(e-b <= 7){
+        insert(arr,b,e);
+        if(n < 50){
+        for(int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        }
+    } else{
         int m = b + (e-b)/2;
         merge_sort(arr, b, m );
         merge_sort(arr, m +1, e);
