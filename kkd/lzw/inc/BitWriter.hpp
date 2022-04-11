@@ -18,7 +18,7 @@ public:
 
     void write(char msg);
     void write(int msg);
-    void end();
+    void end(int mode);
 
     explicit BitWriter(std::string filename);
 };

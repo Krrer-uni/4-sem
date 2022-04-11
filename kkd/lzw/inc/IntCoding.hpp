@@ -6,12 +6,18 @@
 #define LZW_INTCODING_HPP
 
 #include <bits/stdc++.h>
+
 class IntCoding {
-    int mode;
+
 
 public:
     IntCoding(int mode);
+
     std::string code(int number);
+
+private:
+    int mode;
+    std::vector<int> fib_lookup;
 };
 
 

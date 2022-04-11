@@ -15,6 +15,7 @@ public:
     std::string buffer;
     std::ifstream myfile;
     bool FILE_END;
+    int BYTES_READ;
 
     unsigned char getChar();
 

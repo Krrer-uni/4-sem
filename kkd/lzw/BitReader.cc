@@ -25,7 +25,9 @@ int BitReader::getInt() {
 }
 
 char BitReader::getBit() {
-    if (buffer.size() == 0) fillBuffer();
+    if (buffer.size() == 0) {
+        if(fillBuffer() ==0) return 0;
+    }
     unsigned char s = buffer[0];
     buffer.erase(0, 1);
     return s;
@@ -47,7 +49,6 @@ int BitReader::fillBuffer() {
         FILE_END = true;
         return 0;
     }
-
 }
 
 BitReader::BitReader(std::string filename) {
@@ -57,4 +58,5 @@ BitReader::BitReader(std::string filename) {
         std::cout << "File with name \"" << filename << "\" couldn't be open" << std::endl;
     }
     FILE_END = false;
+    BYTES_READ = 0;
 }

@@ -24,9 +24,11 @@ void BitWriter::write(char msg) {
     BYTES_WRITTEN++;
 }
 
-void BitWriter::end() {
+void BitWriter::end(int mode) {
+    char end_char = '0';
+    if(mode == 3 ) end_char = '1';
     char byte = 0;
-    while (buffer.size() < 8) buffer += '0';
+    while (buffer.size() < 8) buffer += end_char;
     for (int i = 0; i < 8; i++) {
         byte = byte << 1;
         byte += ((int) buffer[i] - 48);
@@ -45,5 +47,5 @@ BitWriter::BitWriter(std::string filename) {
 void BitWriter::write(int msg) {
     if(!(myfile.is_open())) std::cout << "wtf" << std::endl;
     myfile << msg;
-    BYTES_WRITTEN++;
+    BYTES_WRITTEN+=4;
 }

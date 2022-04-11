@@ -10,8 +10,11 @@ using namespace std;
 int main(int argc, char *argv[]) {
 
     auto decoding = new IntDecoding(argv[1], 0);
-
-    ofstream write_file(argv[2]);
+    int mode = decoding->nextInt();
+    decoding->change_mode(mode);
+    string output_name = argv[1];
+    output_name = "d_" + output_name.substr(0,output_name.find_last_of('.'));
+    ofstream write_file(output_name);
 
     map<int, string> dictionary;
     int initial_char = 256;
@@ -23,7 +26,7 @@ int main(int argc, char *argv[]) {
 //        cout << dictionary[i] << endl;
     }
     int word = decoding->nextInt();
-    cout << dictionary[word];
+    write_file << dictionary[word];
     string last_msg = dictionary[word];
     while((word = decoding->nextInt()) != -1){
 
@@ -33,8 +36,10 @@ int main(int argc, char *argv[]) {
             dictionary[(int)dictionary.size()] = last_msg + dictionary[word][0];
         }
         last_msg = dictionary[word];
-//        cout << dictionary[word] << " " << word << endl;
-        cout << dictionary[word];
+
+        write_file << dictionary[word];
+//        cout << word << endl;
+//        cout << dictionary[word];
     }
 
 }
