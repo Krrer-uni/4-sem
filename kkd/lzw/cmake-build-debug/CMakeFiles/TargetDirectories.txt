@@ -1,0 +1,5 @@
+/home/krrer/4-sem/kkd/lzw/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/krrer/4-sem/kkd/lzw/cmake-build-debug/CMakeFiles/encode.dir
+/home/krrer/4-sem/kkd/lzw/cmake-build-debug/CMakeFiles/test.dir
+/home/krrer/4-sem/kkd/lzw/cmake-build-debug/CMakeFiles/decode.dir
+/home/krrer/4-sem/kkd/lzw/cmake-build-debug/CMakeFiles/edit_cache.dir
