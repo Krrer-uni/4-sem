@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <queue>
+#include <random>
 using namespace std;
 
 int SWAP = 0;
@@ -19,22 +20,51 @@ int ls(int a, int b){
     return a < b;
 }
 
+int partition (int arr[],int low,int high)
+{
+    int pivot = arr[low];  
+    SWAP++;
+ 
+    int p = low;
 
-int binary_search(int arr[], int b, int e, int v){
-    int c = (e+b)/2;
+    for (int j = p+1; j <= high; j++)
+    {
+        if (ls(arr[j] , pivot))
+        {
+            p++;
+            swap(arr, p ,j);
+        }
+    }
+    swap(arr, p  ,low);
+
     if(n < 50){
-        for(int i = b; i < e+1; i++){
+        for(int i = 0; i < n; i++){
             cout << arr[i] << " ";
         }
         cout << "\n";
     }
-    
-    if(ls(v,c)) return binary_search(arr, b, c-1 ,v);
-    if(ls(c,v)) return binary_search(arr, c +1, e,v);
-    if(c==v) return 1;
-    if(b==e) return 0;
-    return 0;
+    return p;
 }
+
+int randomized_partition(int arr[],int low,int high){
+    random_device dev;
+    mt19937 rng(dev());
+    uniform_int_distribution<mt19937::result_type> dist(low, high);
+    int i = dist(rng);
+    swap(arr,i,low);
+    return partition(arr, low, high);
+}
+
+int random_select(int arr[], int b, int e, int v){
+    if (b == e) return arr[b];
+    int r = randomized_partition(arr, b, e);
+    int k = r-b + 1;
+    if (k == v) return arr[r];
+    if (v < k) return random_select(arr,b, r-1, v);
+    else return random_select(arr,r+1,e,v-k);
+}
+
+
 
 int main(int argc, char** argv){
     int k;
@@ -49,15 +79,9 @@ int main(int argc, char** argv){
     if(n<50) cout << "\n";
     
     // int test[6] = { 6, 5, 4, 3, 2, 1};
-    binary_search(arr,0,n-1, k);
+    cout << random_select(arr,0,n-1, k) << endl;
 
 
-    for(int i = 0; i < n-1; i++){
-        if(arr[i]> arr[i+1]){
-            cout << "SORTING ERROR\n";
-            return -1; 
-        }
-    }
 
 
     // if(n < 50){
