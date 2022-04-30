@@ -7,7 +7,7 @@ using namespace std;
 int SWAP = 0;
 int COMP = 0;
 int n;
-int mts = 5;
+int mts = 7;
 
 void swap(int* arr, int a, int b){
     int tmp  = arr[a];
@@ -19,6 +19,54 @@ void swap(int* arr, int a, int b){
 int ls(int a, int b){
     COMP++;
     return a < b;
+}
+
+void merge(int* arr, int  b, int m, int e){
+    int i = b;
+    int j = m+1;
+    int k = 0;
+    int arr_out[e-b+1];
+    while(i <= m  && j <= e){
+        if(ls(arr[i] , arr[j])){
+            COMP--;
+            arr_out[k] = arr[i];
+            
+            i++;
+        } else{
+            arr_out[k] = arr[j];
+            j++;
+        }
+        k++;
+        // SWAP++;
+    }
+    while(i <= m){
+        arr_out[k++] = arr[i++];
+        // SWAP++;
+    }
+    while(j <= e){
+        arr_out[k++] = arr[j++];
+        // SWAP++;
+    }
+    for(int p = 0; p <= e-b; p++ ){
+        arr[p+b] = arr_out[p];
+        // SWAP++;
+    }
+    // if(n < 50){
+    //     for(int i = 0; i < n; i++){
+    //         cout << arr[i] << " ";
+    //     }
+    //     cout << "\n";
+    // }
+}
+
+void merge_sort(int arr[], int b, int e){
+    if(b==e) return;
+    else{
+        int m = b + (e-b)/2;
+        merge_sort(arr, b, m );
+        merge_sort(arr, m +1, e);
+        merge(arr,b, m, e );
+    }
 }
 
 void insert(int * arr, int low, int high){
@@ -41,14 +89,15 @@ void insert(int * arr, int low, int high){
     
 }
 
-int partition (int arr[],int low,int high, int pivot)
-{
-    for(int i = low; i < high; i++)
+int partition (int arr[],int low,int high, int pivot){
+    for(int i = low; i < high; i++){
+        COMP++;
         if(arr[i] == pivot){
             swap(arr,i,low);
             break;
         }
- 
+    }
+        
     int p = low;
 
     for (int j = p+1; j <= high; j++)
@@ -62,7 +111,7 @@ int partition (int arr[],int low,int high, int pivot)
     swap(arr, p  ,low);
 
     // if(n < 50){
-    //     for(int i = 0; i < n; i++){
+    //     for(int i = low; i <= high; i++){
     //         cout << arr[i] << " ";
     //     }
     //     cout << "\n";
@@ -73,12 +122,16 @@ int partition (int arr[],int low,int high, int pivot)
 
 int select(int arr[], int b, int e, int v){
     cout << "start of select " << v << endl;
-    for(int j = b; j < e+1; j++){
+    if(n < 50){
+        for(int j = b; j < e+1; j++){
         cout << arr[j] << " ";
+        }
+        cout << "\n";
     }
-    cout << endl;
+    
+    // cout << endl;
     if(b == e){
-        cout << "returned from select" << endl;
+        // cout << "returned from select" << endl;
         return arr[e];
     } 
     int n_c = (e-b+1);
@@ -90,31 +143,33 @@ int select(int arr[], int b, int e, int v){
         if(i+mts < n_c){
             insert(arr,i,i+mts);
             m_arr[j++] = arr[i+mts/2];
+            SWAP++;
             i+=mts;
         }
         else{
             insert(arr,i,e+1);
             m_arr[j++] = arr[(i+e)/2];
+            SWAP++;
         }
     }
-    for(int c = 0; c < m; c++) cout << m_arr[c] << " ";
-    cout << " <median table " << endl;
-    int x = select(m_arr,0,m-1, (n_c/mts +1)/2);
+    // for(int c = 0; c < m; c++) cout << m_arr[c] << " ";
+    // cout << " <median table " << endl;
+    int x = select(m_arr,0,m-1, (m+1)/2);
     // cout << "return from select" << endl;
-    cout << x << " x" << endl;
+    // cout << x << " x" << endl;
     int r = partition(arr, b,e,x);
-    cout << r << " x index" << endl;
+    // cout << r << " x index" << endl;
     int k = r - b + 1;
     if (v ==k){
-        cout << "returned " << x << " from select" << endl;
+        // cout << "returned " << x << " from select" << endl;
         return x;
     } 
     if(v < k){
-        cout << "select on left " << endl;
+        // cout << "select on left " << endl;
         return select(arr,b,r-1,v);
     } 
     else{
-        cout << "select on right"  << endl;
+        // cout << "select on right"  << endl;
         return select(arr,r+1,e,v-k);
     } 
     return -1;
@@ -135,16 +190,28 @@ int main(int argc, char** argv){
     if(n<50) cout << "\n";
     
     // int test[6] = { 6, 5, 4, 3, 2, 1};
-    cout << select(arr,0,n-1, k) << endl;
+    int result = select(arr,0,n-1, k);
+   
     
     // cout << partition(arr,0,n-1,4);
 
 
-    // if(n < 50){
-    //     for(int i = 0; i < n; i++){
-    //         cout << arr[i] << " ";
-    //     }
-    //     cout << "\n";
-    // }
+    if(n < 50){
+        cout << result << endl;
+        for(int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        merge_sort(arr,0,n-1);
+        for(int i = 0; i < n; i++){
+            if(i == k-1){
+            cout << "|"<< arr[i] << "| ";;
+            }
+            else 
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+    }
+
     cout  << COMP << ";" << SWAP << "\n";
 }
