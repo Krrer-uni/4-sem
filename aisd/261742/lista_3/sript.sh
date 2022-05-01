@@ -20,7 +20,7 @@ do
                 echo $mydata >> "plot/${alg}_for_${N}_${K}.csv"
             done
             cat "plot/${alg}_for_${N}_${K}.csv" | awk 'BEGIN { FS = ";" } ; {for (i=1;i<=NF;i++){a[i]+=$i;}} END {for (i=1;i<=NF;i++){printf "%.0f", a[i]/NR; printf ";"};printf "\n"}' >> "plot/${alg}_for_${N}.csv"
-            # rm "plot/${alg}_for_${N}_${K}.csv"
+            rm "plot/${alg}_for_${N}_${K}.csv"
         done
 
     done

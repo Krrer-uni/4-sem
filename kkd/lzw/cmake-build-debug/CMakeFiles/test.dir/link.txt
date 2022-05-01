@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/test.dir/tester.cc.o CMakeFiles/test.dir/IntCoding.cc.o CMakeFiles/test.dir/IntDecoding.cc.o CMakeFiles/test.dir/BitReader.cc.o CMakeFiles/test.dir/BitWriter.cc.o -o test 

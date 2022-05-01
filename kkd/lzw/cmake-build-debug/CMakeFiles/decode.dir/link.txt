@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/decode.dir/decodeLZW.cc.o CMakeFiles/decode.dir/BitReader.cc.o CMakeFiles/decode.dir/IntCoding.cc.o CMakeFiles/decode.dir/IntDecoding.cc.o -o decode 

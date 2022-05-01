@@ -7,7 +7,7 @@ using namespace std;
 int SWAP = 0;
 int COMP = 0;
 int n;
-int mts = 7;
+int mts = 5;
 
 void swap(int* arr, int a, int b){
     int tmp  = arr[a];
@@ -121,28 +121,39 @@ int partition (int arr[],int low,int high, int pivot){
 
 
 int select(int arr[], int b, int e, int v){
-    cout << "start of select " << v << endl;
+   
     if(n < 50){
+         cout << "start of select " << v << endl;
         for(int j = b; j < e+1; j++){
         cout << arr[j] << " ";
         }
         cout << "\n";
     }
     
-    // cout << endl;
     if(b == e){
-        // cout << "returned from select" << endl;
         return arr[e];
     } 
     int n_c = (e-b+1);
     int m = (n_c -1)/mts + 1; //(n + mts - 1)/mts
     int m_arr[m];
+
+    // int j = 0;
+    // for(int i = b; i <= e;  i+=mts){
+    //     if(i + (mts-1) <= e){
+    //         insert(arr, i, i+mts);
+    //         m_arr[j] = arr[i+((mts-1)/2)];
+    //         j++;
+    //     }else{
+    //         insert(arr,i,e+1);
+    //         m_arr[j] = arr[i+((e-i)/2)];
+    //     }
+    // }
     int i = b;
     int j = 0;
     while(j < m){
-        if(i+mts < n_c){
+        if(i+mts-1 <= e){
             insert(arr,i,i+mts);
-            m_arr[j++] = arr[i+mts/2];
+            m_arr[j++] = arr[i+(mts)/2];
             SWAP++;
             i+=mts;
         }
@@ -152,24 +163,16 @@ int select(int arr[], int b, int e, int v){
             SWAP++;
         }
     }
-    // for(int c = 0; c < m; c++) cout << m_arr[c] << " ";
-    // cout << " <median table " << endl;
     int x = select(m_arr,0,m-1, (m+1)/2);
-    // cout << "return from select" << endl;
-    // cout << x << " x" << endl;
     int r = partition(arr, b,e,x);
-    // cout << r << " x index" << endl;
     int k = r - b + 1;
     if (v ==k){
-        // cout << "returned " << x << " from select" << endl;
         return x;
     } 
     if(v < k){
-        // cout << "select on left " << endl;
         return select(arr,b,r-1,v);
     } 
     else{
-        // cout << "select on right"  << endl;
         return select(arr,r+1,e,v-k);
     } 
     return -1;

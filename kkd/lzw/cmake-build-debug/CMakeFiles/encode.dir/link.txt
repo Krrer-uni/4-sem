@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/encode.dir/encodeLZW.cpp.o CMakeFiles/encode.dir/BitWriter.cc.o CMakeFiles/encode.dir/BitReader.cc.o CMakeFiles/encode.dir/IntCoding.cc.o -o encode 
