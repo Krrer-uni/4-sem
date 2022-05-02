@@ -7,7 +7,7 @@ using namespace std;
 int SWAP = 0;
 int COMP = 0;
 int n;
-int mts = 5;
+int mts = 9;
 
 void swap(int* arr, int a, int b){
     int tmp  = arr[a];
