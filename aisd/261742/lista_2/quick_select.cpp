@@ -72,13 +72,13 @@ int partition (int arr[],int low,int high, int pivot){
 
 int select(int arr[], int b, int e, int v){
    
-    if(n < 50){
-         cout << "start of select " << v << endl;
-        for(int j = b; j < e+1; j++){
-        cout << arr[j] << " ";
-        }
-        cout << "\n";
-    }
+    // if(n < 50){
+    //      cout << "start of select " << v << endl;
+    //     for(int j = b; j < e+1; j++){
+    //     cout << arr[j] << " ";
+    //     }
+    //     cout << "\n";
+    // }
     
     if(b == e){
         return arr[e];
@@ -160,6 +160,12 @@ void quick(int arr[], int b, int e){
         // int r = arr[(e + b)/2];
         int r = select(arr,b,e,(e - b)/2 + 1);
         int p = partition(arr,b,e,r);
+        if(n < 50){
+        for(int i = 0; i < n; i++){
+            cout << arr[i] << " ";
+        }
+        cout << "\n";
+        }
         quick(arr,b,p-1);
         quick(arr,p+1,e);
     }

@@ -72,13 +72,13 @@ int partition (int arr[],int low,int high, int pivot){
 
 int select(int arr[], int b, int e, int v){
    
-    if(n < 50){
-         cout << "start of select " << v << endl;
-        for(int j = b; j < e+1; j++){
-        cout << arr[j] << " ";
-        }
-        cout << "\n";
-    }
+    // if(n < 50){
+    //      cout << "start of select " << v << endl;
+    //     for(int j = b; j < e+1; j++){
+    //     cout << arr[j] << " ";
+    //     }
+    //     cout << "\n";
+    // }
     
     if(b == e){
         return arr[e];
@@ -131,11 +131,11 @@ int select(int arr[], int b, int e, int v){
 
 void partition (int arr[],int low,int high, int* lp, int* rp, int x, int y)
 {
-    // cout << "in:" << endl;
-    // for(int i = 0; i < n; i++){
-    //     cout << arr[i] << " ";
-    //     }
-    // cout << "\n";
+    cout << "in:" << endl;
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+        }
+    cout << "\n";
      for(int i = low; i < high; i++){
         COMP++;
         if(arr[i] == x){

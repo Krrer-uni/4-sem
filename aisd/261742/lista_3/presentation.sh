@@ -11,9 +11,12 @@ do
     do
         for N in 8 16 32
         do
-            echo " ./$alg2 $N | ./$alg "
-            ./$alg2 $N | ./$alg
-            echo
+            for K in 1 $(( $N / 2 )) $N
+            do
+               echo " ./$alg2 $N  $K | ./$alg "
+                ./$alg2 $N $K | ./$alg
+               echo
+            done
         done
     done
 done
