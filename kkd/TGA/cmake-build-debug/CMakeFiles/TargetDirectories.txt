@@ -1,0 +1,3 @@
+/home/krrer/4-sem/kkd/TGA/cmake-build-debug/CMakeFiles/TGA.dir
+/home/krrer/4-sem/kkd/TGA/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/krrer/4-sem/kkd/TGA/cmake-build-debug/CMakeFiles/rebuild_cache.dir
