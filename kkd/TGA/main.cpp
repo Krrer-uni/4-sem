@@ -85,7 +85,7 @@ void entropy(std::vector<std::vector<RGB>> pixels, int width, int height, std::v
 int main() {
     //read header
     const char *filename = "example0.tga";
-    FILE *f = std::fopen("../test/example1.tga", "rb");
+    FILE *f = std::fopen("../test/example0.tga", "rb");
     tga::StdioFileInterface file(f);
     tga::Decoder decoder(&file);
     tga::Header header;
@@ -215,7 +215,7 @@ int main() {
             if (packed[i - 1][j - 1].red >=
                 std::max(packed[i][j - 1].red, packed[i - 1][j].red)) {
                 x_hat = std::max(packed[i][j - 1].red, packed[i - 1][j].red);
-            } else if (packed[i - 1][j - 1].red >=
+            } else if (packed[i - 1][j - 1].red <=
                        std::min(packed[i][j - 1].red, packed[i - 1][j].red)) {
                 x_hat = std::min(packed[i][j - 1].red, packed[i - 1][j].red);
             } else {
@@ -226,7 +226,7 @@ int main() {
             if (packed[i - 1][j - 1].green >=
                 std::max(packed[i][j - 1].green, packed[i - 1][j].green)) {
                 x_hat = std::max(packed[i][j - 1].green, packed[i - 1][j].green);
-            } else if (packed[i - 1][j - 1].green >=
+            } else if (packed[i - 1][j - 1].green <=
                        std::min(packed[i][j - 1].green, packed[i - 1][j].green)) {
                 x_hat = std::min(packed[i][j - 1].green, packed[i - 1][j].green);
             } else {
@@ -237,7 +237,7 @@ int main() {
             if (packed[i - 1][j - 1].blue >=
                 std::max(packed[i][j - 1].blue, packed[i - 1][j].blue)) {
                 x_hat = std::max(packed[i][j - 1].blue, packed[i - 1][j].blue);
-            } else if (packed[i - 1][j - 1].blue >=
+            } else if (packed[i - 1][j - 1].blue <=
                        std::min(packed[i][j - 1].blue, packed[i - 1][j].blue)) {
                 x_hat = std::min(packed[i][j - 1].blue, packed[i - 1][j].blue);
             } else {
