@@ -1,3 +1,5 @@
+package zad1;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,7 +7,7 @@ import java.io.IOException;
 public class Encoding {
     public static void main(String[] args) throws IOException {
         int block_size = 10;
-        int data_size = 20;
+        int data_size = 1000;
         String data_gen_filename = "data.txt";
         String encoded_data_filename = "encoded.txt";
 

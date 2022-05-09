@@ -1,3 +1,5 @@
+package zad1;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.Objects;
@@ -27,36 +29,33 @@ public class Decoding {
                 int k = reader.read();
                 if (k == -1) return;
                 msg.append((char) k);
-                int i = 1;
+
                 while (true) {
                     k = reader.read();
-                    i++;
-                    if (k == -1) return;
-                    if(i%6 != 0 || (char)k == '1'){
-                        msg.append((char) k);
-                    }
-                    System.out.println(msg);
-                    try{
-                        //musisz zrobić drugi msg bo w pierwszym sprawdzasz czy 0111111 nie pojawiło się w data.txt, sprawdzasz PO usunięciu rozpychania, to nie zadziała
-                        //musi byc drugi string
-                    if(msg.substring(msg.length()-7,msg.length()).equals("0111111")){
-//                        System.out.println(msg);
-                        k = reader.read();
-                        if((char)k != '0'){
-                            malformed_frames_count++;
-                            break;
-                        }
-                        msg = new StringBuilder(msg.substring(0,msg.length()-7));
-//                        System.out.println(msg);
 
+                    if (k == -1) return;
+                    msg.append((char) k);
+//                    if(i%6 != 0 || (char)k == '1'){
+
+//                    }
+//                    System.out.println(msg);
+                    try{
+                    if(msg.substring(msg.length()-8,msg.length()).equals("01111110")){
+//                        System.out.println(msg);
+                        msg = new StringBuilder(msg.substring(0,msg.length()-8));
+//                        System.out.println(msg);
+                        for(int i = msg.length()-1; i > 0;i--){
+                            if(i%6 == 5){
+                                msg.delete(i,i+1);
+                            }
+                        }
+//                        System.out.println(msg);
                         String data  = msg.substring(0,msg.length()-32);
 
                         CRC32 checksum = new CRC32();
                         checksum.update(data.getBytes());
                         long crc = checksum.getValue();
-                        String calculated_checksum = String.format("%32s", Long.toBinaryString(crc)).replace(' ', '0');
-                        String right = msg.substring(msg.length() - 32, msg.length());
-                        if(calculated_checksum.equals(right)){
+                        if(Objects.equals(msg.substring(msg.length() - 32, msg.length()), String.format("%32s", Long.toBinaryString(crc)).replace(' ', '0'))){
                             writer.append(data);
                             decoded_frames_count++;
                             break;

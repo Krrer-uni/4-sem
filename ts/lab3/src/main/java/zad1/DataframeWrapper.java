@@ -1,3 +1,5 @@
+package zad1;
+
 import java.util.zip.CRC32;
 
 public class DataframeWrapper {

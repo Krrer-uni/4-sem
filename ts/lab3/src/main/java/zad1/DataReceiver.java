@@ -1,3 +1,5 @@
+package zad1;
+
 import java.io.*;
 
 public class DataReceiver {
