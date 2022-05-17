@@ -44,6 +44,18 @@ double dist(RGB a, RGB b) {
     return sum;
 }
 
+
+double euc_dist(RGB a, RGB b) {
+  double sum;
+  double x = abs(a.red - b.red);
+  double y = abs(a.green - b.green);
+  double z = abs(a.blue - b.blue);
+  sum = x*x + y*y + z+z;
+
+  return sqrt(sum);
+}
+
+
 double distortion(imageVec image_a, imageVec image_b) {
     if (image_a.size() != image_b.size()) {
         std::cerr << "Trying to compare " + std::to_string(image_a.size()) + " size vector and " +
@@ -53,7 +65,7 @@ double distortion(imageVec image_a, imageVec image_b) {
     double sum = 0;
     for (int i = 0; i < image_a.size(); i++) {
         for (int j = 0; j < image_a[0].size(); j++) {
-            double a = dist(image_a[i][j], image_b[i][j]);
+            double a = euc_dist(image_a[i][j], image_b[i][j]);
             sum += a*a;
         }
     }
@@ -75,10 +87,10 @@ double snr(imageVec image_a, imageVec image_b){
 
 RGB best_fit(RGB x, std::vector<RGB> dict) {
     RGB best_fit = dict[0];
-    double best_fit_dist = dist(x, best_fit);
+    double best_fit_dist = euc_dist(x, best_fit);
     for (RGB cand: dict) {
-        if (dist(x, cand) < best_fit_dist) {
-            best_fit_dist = dist(x, cand);
+        if (euc_dist(x, cand) < best_fit_dist) {
+            best_fit_dist = euc_dist(x, cand);
             best_fit = cand;
         }
     }
@@ -117,6 +129,13 @@ void quantize(imageVec input, std::vector<RGB> &dict, imageVec &output, double e
         cond = std::abs((distor - last_distor) / distor);
         if(last_distor != 0 && distor > last_distor) break;
     }while (cond > eps);
+}
+
+RGB get_dist(){
+  int i =((rand()%2) * 2) -1;
+  int j = ((rand()%2) * 2) -1;
+  int k = ((rand()%2) * 2) -1;
+  return RGB(i,j,k);
 }
 
 
@@ -180,15 +199,17 @@ int main(int argc, char *argv[]) {
 //    quantize(output, quant, result, 0.001);
 //    std::cout << distortion(input, result) << std::endl;
 
-    RGB RGB_dist(10,10,10);
+    RGB RGB_dist(1,1,1);
     std::vector<RGB> dic;
     dic.push_back(avg);
+  quantize(output,dic, result,0.0001);
     dic.push_back((avg+RGB_dist)%256);
+
     for(int i =0; i < n ; i++){
         quantize(output,dic, result,0.0001);
         int size = dic.size();
         for(int j = 0; j < size; j++){
-            dic.push_back((dic[j] + RGB_dist)%256);
+            dic.push_back((dic[j] + get_dist())%256);
         }
         std::cout << "Distortion for " << i + 1 << " bits" << std::endl;
     }
