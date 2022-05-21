@@ -1,0 +1,10 @@
+name.txt= "wojciech rymer"
+MD4(name.txt)= b418d9876f5909815db8922687c809c2
+MD5(name.txt)= acf67de51d823e471cff6c0382d375c5
+SHA1(name.txt)= b9557cc5453aac4a661a773cc330dfbe342689e0
+SHA256(name.txt)= f75d5214467a37abd273725e6e43ac2d2a3d23fb4bc29dbe90b47afbee607bca
+SHA512(name.txt)= 906a16563cbd2611e0e8b21d335cab92140ff06d2dd75fa69ee95729a760a8f2e68e94cd16430395a238cb4bb0af8660cee9b7e8cfe0d5c2710b713c73bec2c8
+BLAKE2b512(name.txt)= 77d3422ec0c9e713528081807133808539cf1b4183e5128c087b6e0e8cb816c841985fe4dfc5d22d71c8b7bb3920ec1ec9fd14cdc87b92ac1aab6e0d27ef21de
+BLAKE2s256(name.txt)= c5c5137f4def05a37c8e9a37bfcaf5235c782f27198278f7c5ee1e52cf5fd469
+
+I was using "openssl dgst" on file name.txt (no newline at the end) 
