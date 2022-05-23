@@ -100,6 +100,8 @@ class BST {
                 if(w->c == red){
                     w->c = black;
                     x->parent->c = red;
+                    left_rotate(x->parent);
+                    w = x->parent->right;
                 }
                 if(w->left->c == black && w->right->c == black){
                     w->c = red;
@@ -109,11 +111,12 @@ class BST {
                     if( w->right->c == black){
                         w->left->c = black;
                         w->c = red;
-                        right_rotate(x->parent);
+                        right_rotate(w);
                         w = x->parent->right;
                     }
                     w->c = x->parent->c;
                     x->parent->c = black;
+                    w->right->c = black;
                     left_rotate(x->parent);
                     x = root;
                 } 
@@ -122,6 +125,8 @@ class BST {
                 if(w->c == red){
                     w->c = black;
                     x->parent->c = red;
+                    right_rotate(x->parent);
+                    w = x->parent->left;
                 }
                 if(w->right->c == black && w->left->c == black){
                     w->c = red;
@@ -131,11 +136,12 @@ class BST {
                     if( w->left->c == black){
                         w->right->c = black;
                         w->c = red;
-                        left_rotate(x->parent);
+                        left_rotate(w);
                         w = x->parent->left;
                     }
                     w->c = x->parent->c;
                     x->parent->c = black;
+                    w->left->c = black;
                     right_rotate(x->parent);
                     x = root;
                 } 
