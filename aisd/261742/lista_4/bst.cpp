@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-int SWAP = 0;
-int COMP = 0;
+long abc = 0;
+long SWAP = 0;
 
 
 class BST {
@@ -23,14 +23,14 @@ class BST {
     char* right_trace;
 
     int getHeight(struct node * n){
-        SWAP++;
+        abc++;
         if(n == NULL) return 0;
         return 1+ max(getHeight(n->left), getHeight(n->right));
     }
 
     struct node* minimum(struct node* x){
         while(x->left != NULL){
-            SWAP++;
+            abc++;
             x = x->left;
         }
         return x;
@@ -72,12 +72,12 @@ class BST {
     }
 
     struct node* search(struct node * x, int k){
+        abc++;
         SWAP++;
-        COMP++;
         if(x == NULL || x->val == k){
             return x;
         }
-        COMP++;
+        SWAP++;
         if(k < x->val){
             return search(x->left, k);
         }
@@ -87,24 +87,24 @@ class BST {
     }
 
     void deleteNode(struct node* node){
-        SWAP+=2;
+        abc+=2;
         if(node->left == NULL && node->right == NULL){
-            SWAP++;
+            abc++;
             if(node->parent != NULL){
-                SWAP+=2;
+                abc+=2;
                 if(node->parent->left == node) node->parent->left = NULL;
                 else node->parent->right = NULL;
             } else{
-                SWAP++;
+                abc++;
                 root = NULL;
             }
             free(node);
         } else if(node->right == NULL){
-            SWAP+=2;
+            abc+=2;
             node->left->parent = node->parent;
-            SWAP++;
+            abc++;
             if(node->parent != NULL){
-                SWAP+=2;
+                abc+=2;
                 if(node->parent->left == node) node->parent->left = node->left;
                 else node->parent->right = node->left;
             } else{
@@ -113,22 +113,22 @@ class BST {
             free(node);
             
         } else if(node->left == NULL){
-            SWAP+=2;
+            abc+=2;
             node->right->parent = node->parent;
-            SWAP++;
+            abc++;
             if(node->parent != NULL){
-                SWAP+2;
+                abc+2;
                 if(node->parent->left == node) node->parent->left = node->right;
                 else node->parent->right = node->right;
             } else{
-                SWAP++;
+                abc++;
                 root = node->right;
             }
             free(node);
         } else{
-            SWAP+=4;
+            abc+=4;
             auto tmp = minimum(node->right);
-            COMP++;
+            SWAP++;
             node->val = tmp->val;
             deleteNode(tmp);
         }
@@ -142,40 +142,40 @@ public:
     }
 
     void insert(int val){
+        abc++;
         SWAP++;
-        COMP++;
         auto new_node = new node(val);
-        SWAP++;
+        abc++;
         if(root == NULL){
-            SWAP++;
+            abc++;
             root = new_node;
             return;
         }
-        SWAP++;
+        abc++;
         auto tmp = root;
         while(true){
-            COMP++;
+            SWAP++;
             if(val > tmp->val){
-                SWAP++;
+                abc++;
                 if(tmp->right == NULL){
-                    SWAP+=2;
+                    abc+=2;
                     tmp->right = new_node;
                     new_node->parent = tmp;
                     return;
                 } else{
-                    SWAP++;
+                    abc++;
                     tmp = tmp->right;
                     continue;
                 }
             }else{
-                SWAP++;
+                abc++;
                 if(tmp->left == NULL){
-                    SWAP+=2;
+                    abc+=2;
                     tmp->left = new_node;
                     new_node->parent = tmp;
                     return;
                 } else{
-                    SWAP++;
+                    abc++;
                     tmp = tmp->left;
                     continue;
                 }
@@ -189,7 +189,7 @@ public:
     }
 
     void deleteKey(int key){
-        SWAP+=2;
+        abc+=2;
         auto node = search(root,key);
         if(node == NULL) return;
         deleteNode(node);
@@ -220,14 +220,14 @@ int main(int argc, char* argv[]){
     if(n<50) cout << "\n";
 
     BST bst(n);
-    int max_swap = 0;
-    int max_comp = 0;
+    long max_swap = 0;
+    long max_comp = 0;
     for(int i = 0; i < n; i++){
-        int last_swap = SWAP;
-        int last_comp = COMP;
+        long last_swap = abc;
+        long last_comp = SWAP;
         bst.insert(arr[i]);
-        max_swap = max(max_swap, SWAP - last_swap);
-        max_comp = max(max_comp,COMP - last_comp);
+        max_swap = max(max_swap, abc - last_swap);
+        max_comp = max(max_comp,SWAP - last_comp);
         if(n<50) {
         cout << "insert " << arr[i] << "\n";
         bst.print();
@@ -243,5 +243,5 @@ int main(int argc, char* argv[]){
         }
     }
 
-    cout << SWAP << " " << max_swap << " " << SWAP/n << " " << COMP <<  " " << max_comp << " " << COMP/n << endl;
+    cout << abc << " " << max_swap << " " << abc/n << " " << SWAP <<  " " << max_comp << " " << SWAP/n << endl;
 }
