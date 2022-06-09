@@ -46,11 +46,10 @@ int main(int argc, char * argv[]){
     if(n<50){
 
         for(int i = 0; i < n; i++){
-        cin >> arr[i];
         cout << arr[i] << " ";
     }
     cout << "\n";
     }
 
-    std::cout << SWAP << "," << COMP << endl;
+    std::cout << SWAP << ";" << COMP << endl;
 }

@@ -3,7 +3,7 @@
 rm plot/*.csv
 
 alg=merge
-for alg in quick dpquick quick_select dpquick_select
+for alg in quick dpquick merge hybrid
 do
     g++ ${alg}.cpp -o $alg
     for N in 100 200 300 400 500 600 700 800 900 1000

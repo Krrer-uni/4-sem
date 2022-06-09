@@ -53,6 +53,7 @@ void Heap::build_heap(int size, int * arr){
     }
 
     a = (a-1)/2 -1;
+    if(size < 50)
         cout << a << endl;
     for(int i = a; i>= 0; i--){
         // print();

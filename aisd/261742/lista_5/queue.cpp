@@ -17,13 +17,15 @@ int main(int argc, char * argv[]){
     Heap heap(n);
     for(int i = 0; i < n; i++){
         heap.insert_key(arr[i]);
+        if( n < 50)
         heap.print();
     }
     for(int i =0; i < n; i ++){
         heap.extract_max();
+        if(n < 50)
         heap.print();
     }
-    
+    std::cout << heap.SWAP << ";" << heap.COMP << endl;
     // if(n<50){
 
     //     for(int i = 0; i < n; i++){
