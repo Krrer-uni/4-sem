@@ -1,4 +1,4 @@
-/home/krrer/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5591.52/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/krrer/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5591.52/bin/ninja/linux/ninja -G Ninja -S /home/krrer/4-sem/kkd/vecQuant -B /home/krrer/4-sem/kkd/vecQuant/cmake-build-debug
+/home/krrer/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/krrer/Repos/4-sem/kkd/vecQuant -B /home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/krrer/4-sem/kkd/vecQuant/cmake-build-debug
+-- Build files have been written to: /home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug

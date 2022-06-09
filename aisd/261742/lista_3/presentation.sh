@@ -5,7 +5,7 @@ cat presentation.sh
 for alg in select randselect
 do
     g++ ${alg}.cpp -o $alg
-    # cat ${alg}.cpp
+    cat ${alg}.cpp
     for alg2 in randgen 
     # descgen ascgen
     do

@@ -1,3 +1,4 @@
-/home/krrer/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/vecQuant.dir
-/home/krrer/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/krrer/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/vecQuant.dir
+/home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/bandCoding.dir
+/home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/krrer/Repos/4-sem/kkd/vecQuant/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/vecQuant.dir/main.cpp.o CMakeFiles/vecQuant.dir/vecQuantlib.cpp.o CMakeFiles/vecQuant.dir/tga/decoder.cpp.o CMakeFiles/vecQuant.dir/tga/encoder.cpp.o -o vecQuant  ../lib/libtga-lib.a 

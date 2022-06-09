@@ -137,6 +137,7 @@ class BST {
         SWAP++;
         struct node* y = z;
         struct node* x;
+        struct node* p = z->parent;
         SWAP++;
         if(z -> left == nil){
             SWAP++;
@@ -165,6 +166,9 @@ class BST {
             SWAP++;
             y->left = z->left;
             y->left->parent = y;
+        }
+        if(p != nil){
+            splay(p);
         }
     }
 
