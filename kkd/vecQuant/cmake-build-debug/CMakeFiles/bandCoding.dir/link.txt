@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/bandCoding.dir/bandCoding.cpp.o CMakeFiles/bandCoding.dir/tga/decoder.cpp.o CMakeFiles/bandCoding.dir/tga/encoder.cpp.o -o bandCoding  ../lib/libtga-lib.a 
