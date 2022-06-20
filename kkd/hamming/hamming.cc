@@ -28,18 +28,20 @@ void generate_dict(uint8_t *output, int size) {
 uint8_t decode_word(uint8_t n) {
     auto a = ctb(n);
     Eigen::Matrix<int, 4, 8> H;
-    H << 0, 0, 1, 0, 1, 1, 1, 0,
+    H <<    0, 0, 1, 0, 1, 1, 1, 0,
             0, 1, 0, 1, 1, 1, 0, 0,
             1, 0, 1, 1, 1, 0, 0, 0,
             1, 1, 1, 1, 1, 1, 1, 1;
+    int b[] = {0,1,4,2,6,5,3};
     Eigen::Matrix<int, 4,1> syndrom = (H * a).unaryExpr([&](const int x) {return x%2;});
     if(syndrom.sum() != 0){
         std::cout << ctb(n).transpose() << "\n" << syndrom.transpose() << "\n\n";
         if(syndrom(3,0) == 0){
-            return 0;
+            return 255;
         }
-        int idx = syndrom(2,0) * 4 + syndrom(1,0) * 2 + syndrom(0,0);
-        a(idx) = (a(idx) + 1) %2;
+        int idx = syndrom(0,0) * 4 + syndrom(1,0) * 2 + syndrom(2,0);
+        if(idx != 0)
+        a(idx-1) = (a(idx-1) + 1) %2;
     }
     uint8_t f = a(0,0) + ((a(1,0) + a(0,0))%2) * 2 + a(5,0) * 4 + a(6,0) * 8;
     return f;

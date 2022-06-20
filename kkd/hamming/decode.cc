@@ -8,6 +8,7 @@
 int main(int argc, char* argv[]) {
     if(argc < 2){
         std::cout << "Provide more arguments \n";
+        return 0;
     }
     std::fstream readFile, writeFile;
     readFile.open(argv[1], std::fstream::in);
@@ -15,9 +16,15 @@ int main(int argc, char* argv[]) {
     int c;
     int p = 0;
     uint8_t tmp = 0;
+    int counter = 0;
     while((c = readFile.get()) != EOF){
         tmp = tmp << 4;
-        tmp += decode_word((uint8_t)c);
+        auto a = decode_word((uint8_t)c);
+        if( a == 255){
+            counter++;
+        }
+        else
+        tmp += a;
         p++;
         if(p == 2){
             p = 0;
@@ -26,5 +33,6 @@ int main(int argc, char* argv[]) {
         }
     }
     writeFile.close();
+    std::cout << "Number of 2 bit mistakes: " << counter << "\n";
     return 0;
 }

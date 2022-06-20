@@ -10,3 +10,5 @@ add_executable(noise noise.cc )
 
 add_executable(decode decode.cc hamming.cc  bit_operations.cc  BitReader.cc
         BitWriter.cc)
+
+add_executable(check check.cc)
